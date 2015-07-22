@@ -51,7 +51,7 @@ EMAIL_USE_TLS = False
 EMAIL_HOST = 'smtp.163.com'
 EMAIL_PORT = 25
 EMAIL_HOST_USER = 'lilinchuan2@163.com'
-EMAIL_HOST_PASSWORD = 'l1992l0202c2112'
+EMAIL_HOST_PASSWORD = 'qwertyuiop'
 DEFAULT_FROM_EMAIL = 'lilinchuan2@163.com'
 #---------------------------------------------------------
 
