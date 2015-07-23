@@ -89,7 +89,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'tryreg.wsgi.application'
 
-
+AUTH_PROFILE_MODULE = 'registration.UserProfile'
+#AUTH_USER_MODEL = 'registration.UserProfile'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
