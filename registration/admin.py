@@ -6,6 +6,12 @@ from django.utils.translation import ugettext_lazy as _
 from registration.models import RegistrationProfile
 from registration.users import UsernameField
 
+from django.contrib.auth.admin import UserAdmin
+from registration.users import UserModel
+from registration.models import UserProfile
+
+User = UserModel()
+
 
 class RegistrationAdmin(admin.ModelAdmin):
     actions = ['activate_users', 'resend_activation_email']
@@ -44,4 +50,19 @@ class RegistrationAdmin(admin.ModelAdmin):
     resend_activation_email.short_description = _("Re-send activation emails")
 
 
+# Define an inline admin descriptor for Employee model
+# which acts a bit like a singleton
+class MyUserInline(admin.StackedInline):
+    model = UserProfile
+    can_delete = False
+    verbose_name_plural = 'Additional'
+
+
+# Define a new User admin
+class UserAdmin(UserAdmin):
+    inlines = (MyUserInline, )
+
+# Re-register UserAdmin
+admin.site.unregister(User)
+admin.site.register(User, UserAdmin)
 admin.site.register(RegistrationProfile, RegistrationAdmin)

@@ -16,6 +16,9 @@ from django.utils import six
 
 from registration.users import UserModel, UserModelString
 
+from django.db.models.signals import post_save
+from django.contrib.auth.models import User
+
 
 try:
     from django.utils.timezone import now as datetime_now
@@ -24,6 +27,25 @@ except ImportError:
 
 
 SHA1_RE = re.compile('^[a-f0-9]{40}$')
+
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User)
+    level = models.IntegerField(default=1)
+    exp = models.BigIntegerField(default=0)
+    groupLevel = models.IntegerField(default=0)
+    description = models.TextField(max_length=51200)
+
+
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        try:
+            profile, created = UserProfile.objects.get_or_create(user=instance)
+        except Exception, ex:
+            print ex
+
+
+post_save.connect(create_user_profile, sender=User)
 
 
 class RegistrationManager(models.Manager):
