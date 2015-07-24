@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Welcome</title>
+     <script type="text/javascript">
+    function reminder() {
+        alert("You have joined in a new group!");
+    }
+</script>
+<link href="/static/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    {% if user.is_authenticated %}
+        <h1>Welcome {{user.username}}!</h1>
+
+        <div>
+            <a href="/accounts/password/change/" style="text-decoration:none">ChangePassword</a><br />
+            <a href="/accounts/login" style="text-decoration:none">Logout</a><br />
+            <p>Select a group level</p>
+            <form action="" method="get">
+                <label><input type="radio" name="group" value="easy" />Easy</label>
+                <label><input type="radio" name="group" value="medium"/>Medium</label>
+                <label><input type="radio" name="group" value="hard" />Hard</label><br />
+                <input type="submit" name="submit" value="submit" onclick="reminder()"/>
+            </form>
+        </div>
+    {% else %}
+        <h1>Welcome!</h1>
+        <p>Please login</p>
+        <a href="/accounts/login" style="text-decoration:none">登陆</a>
+    {% endif %}
+
+</body>
+
+
+
+</html>

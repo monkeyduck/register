@@ -26,6 +26,8 @@ from django.views.generic.base import TemplateView
 from registration.backends.default.views import ActivationView
 from registration.backends.default.views import RegistrationView
 
+from registration.views import homepage
+
 
 urlpatterns = patterns('',
                        url(r'^activate/complete/$',
@@ -44,6 +46,7 @@ urlpatterns = patterns('',
                        url(r'^register/closed/$',
                            TemplateView.as_view(template_name='registration/registration_closed.html'),
                            name='registration_disallowed'),
+                       url(r'^profile/$',homepage),
                        )
 
 if getattr(settings, 'INCLUDE_REGISTER_URL', True):

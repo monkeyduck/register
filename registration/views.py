@@ -2,7 +2,7 @@
 Views which allow users to create and activate accounts.
 
 """
-
+from django.shortcuts import render_to_response
 from django.shortcuts import redirect
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import FormView
@@ -149,3 +149,19 @@ class ActivationView(TemplateView):
 
     def get_success_url(self, request, user):
         raise NotImplementedError
+
+
+def homepage(request):
+    if request.user.is_authenticated:
+        if request.method == 'GET'and 'group' in request.GET:
+            profile = request.user.userprofile
+            if request.GET['group'] == 'easy':
+                profile.groupLevel = 1
+            elif request.GET['group'] == 'medium':
+                profile.groupLevel = 2
+            elif request.GET['group'] == 'hard':
+                profile.groupLevel = 3
+            else:
+                raise ValueError
+            profile.save()
+    return render_to_response('homepage.html', {'user': request.user})

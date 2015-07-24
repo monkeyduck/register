@@ -1,22 +1,52 @@
-{% extends "base.html" %}
-{% load i18n %}
+<!--{% extends "base.html" %}-->
+<!--{% load i18n %}-->
 
-{% block title %}{% trans "Account Activated" %}{% endblock %}
+<!--{% block title %}{% trans "Account Activated" %}{% endblock %}-->
 
-{% block content %}
-<p>
-    {% trans "Your account is now activated." %}
+<!--{% block scripts %}-->
+
+    <!--function register() {-->
+        <!--top.location.href = 'accounts/register'-->
+    <!--}-->
+<!--{% endblock %}-->
+
+<!--{% block content %}-->
+<!--<p>-->
+    <!--{% trans "Your account is now activated." %}-->
+    <!--<form action="" method="post">-->
+        <!--<input type="button" value="Return to Login" onclick="register()">-->
+    <!--</form>-->
+    <!--{% if not user.is_authenticated %}-->
+    <!--{% trans "You can log in." %}-->
+    <!--{% endif %}-->
+<!--</p>-->
+<!--{% endblock %}-->
+
+
+<!--{% comment %}-->
+<!--**registration/activation_complete.html**-->
+
+<!--Used after successful account activation. This template has no context-->
+<!--variables of its own, and should simply inform the user that their-->
+<!--account is now active.-->
+<!--{% endcomment %}-->
+<html>
+<head>
+    <title>Welcome </title>
+    <script type="text/javascript">
+    function login() {
+        top.location.href = 'accounts/register'
+    }
+</script>
+</head>
+<body>
+<p>Your account is now activated.</p>
+    <form action="" method="post">
+        <input type="button" value="Return to Login" onclick="register()">
+    </form>
     {% if not user.is_authenticated %}
     {% trans "You can log in." %}
     {% endif %}
-</p>
-{% endblock %}
 
-
-{% comment %}
-**registration/activation_complete.html**
-
-Used after successful account activation. This template has no context
-variables of its own, and should simply inform the user that their
-account is now active.
-{% endcomment %}
+</body>
+</html>
