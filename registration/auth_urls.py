@@ -67,12 +67,12 @@ if (LooseVersion(get_version()) >= LooseVersion('1.6')):
                             url(r'^password/reset/confirm/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>.+)/$',
                                 auth_views.password_reset_confirm,
                             {'post_reset_redirect': reverse_lazy('auth_password_reset_complete')},
-                                name='auth_password_reset_confirm')
+                                name='password_reset_confirm')
                         )
 else:
     urlpatterns += patterns('',
                             url(r'^password/reset/confirm/(?P<uidb36>[0-9A-Za-z]{1,13})-(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
                                 auth_views.password_reset_confirm,
                             {'post_reset_redirect': reverse_lazy('auth_password_reset_complete')},
-                                name='auth_password_reset_confirm')
+                                name='password_reset_confirm')
                         )
